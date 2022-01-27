@@ -17,11 +17,12 @@ const forecast = async (latitude, longitude, callback) => {
     if (response.data.success === false)
       throw new Error('unable to connect to weather servies')
 
-    const { temperature, weather_descriptions, precip } = response.data.current
+    const { temperature, weather_descriptions, precip, observation_time } =
+      response.data.current
 
     callback(
       undefined,
-      `${weather_descriptions}. it is currently ${temperature} degrees out. There is a ${precip}% chance of rain`
+      `${weather_descriptions}. it is currently ${temperature} degrees out. There is a ${precip}% chance of rain. The observation time is: ${observation_time}`
     )
   } catch (e) {
     callback(e.message, undefined)
